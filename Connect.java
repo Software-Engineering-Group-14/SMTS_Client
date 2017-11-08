@@ -1,3 +1,5 @@
+package com.group14.SMTS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,19 +8,42 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class Connect {
-    public static void main(String[] args) {
+
+    String serverUrl;
+    int port;
+    Socket client;
+    PrintWriter out;
+    BufferedReader socketInput;
+    BufferedReader userInput;
+
+    public Connect(String serverUrl, int port){
+        this.serverUrl = serverUrl;
+        this.port = port;
+    }
+
+    public boolean connectToSocket() {
         try {
-            Socket client = new Socket("46.101.3.244", 5000);
-            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-            BufferedReader sockIn = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            BufferedReader usrIn = new BufferedReader(new InputStreamReader(System.in));
-            String usrInput;
-            while((usrInput = usrIn.readLine()) != null){
-                out.println(usrInput);
-                System.out.println("Socket:" + sockIn.readLine());
-            }
-        } catch (IOException exception){
-            System.out.println(exception.getMessage());
+            this.client = new Socket(this.serverUrl, this.port);
+            this.out = new PrintWriter(this.client.getOutputStream(), true);
+            this.socketInput = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
+            this.userInput = new BufferedReader(new InputStreamReader(System.in));
+            return true;
+        } catch (IOException err) {
+            System.out.println(err.getLocalizedMessage());
+            return false;
         }
     }
+
+    public String sendMessage(String msg){
+        if(this.out != null){
+            this.out.println(msg);
+            try {
+                return (String) this.socketInput.readLine(); //Return the server response as a string
+            } catch (IOException err) {
+                System.out.println(err.getLocalizedMessage());
+            }
+        }
+        return null;
+    }
+
 }
