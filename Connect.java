@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.stream.Stream;
 
 public class Connect {
 
@@ -34,14 +35,10 @@ public class Connect {
         }
     }
 
-    public String sendMessage(String msg){
+    public Stream<String> sendMessage(String msg){
         if(this.out != null){
             this.out.println(msg);
-            try {
-                return (String) this.socketInput.readLine(); //Return the server response as a string
-            } catch (IOException err) {
-                System.out.println(err.getLocalizedMessage());
-            }
+            return this.socketInput.lines(); //Return the server response as a string
         }
         return null;
     }
