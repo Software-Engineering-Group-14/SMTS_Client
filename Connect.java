@@ -35,12 +35,14 @@ public class Connect {
         }
     }
 
-    public Stream<String> sendMessage(String msg){
+    public void sendMessage(String msg){
         if(this.out != null){
             this.out.println(msg);
-            return this.socketInput.lines(); //Return the server response as a string
         }
-        return null;
+    }
+
+    public Stream<String> recieveMessage(){
+        return this.socketInput.lines(); //Return the server response as a Stream
     }
 
 }
