@@ -1,5 +1,3 @@
-package com.group14.SMTS;
-
 public class Sell {
     private User user;
 

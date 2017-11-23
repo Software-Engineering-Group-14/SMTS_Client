@@ -1,5 +1,3 @@
-package com.group14.SMTS;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,5 +1,3 @@
-package com.group14.SMTS;
-
 public class main {
     public static void main(String[] args) {
         User newUser = new User("Owen", (float) 100000000.47);

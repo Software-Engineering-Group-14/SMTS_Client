@@ -1,6 +1,3 @@
-package com.group14.SMTS;
-
-
 public class Stock {
 
     private String companyName;

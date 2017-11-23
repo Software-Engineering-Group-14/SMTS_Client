@@ -1,5 +1,3 @@
-package com.group14.SMTS;
-
 public class Buy {
     private User user;
     private Stock stock;
