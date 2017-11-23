@@ -3,7 +3,7 @@ A client for a Stock Market Trading System
 
 
 ## To compile the project:
-1. Clone into a directory e.g: SMTS_Client
+* Clone into a directory e.g: SMTS_Client
 2. `cd` into that directory
 3. To run the example:
 ```
