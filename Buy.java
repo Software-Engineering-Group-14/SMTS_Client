@@ -13,16 +13,17 @@ public class Buy {
         }
     }
 
-    public void buyStock() {
+    public int buyStock() {
         for(int i = 0; i < amountToBuy; i++){
             if(user.getMoney() < stock.getPrice()){
-                System.out.println("You don't have enough money");
-                break;
+                return -1;
             } else {
                 user.removeMoney(stock.getPrice());
                 user.updateAmountSpent(stock.getPrice());
                 user.addStock(stock);
+              
             }
         }
+        return 0;
     }
 }
