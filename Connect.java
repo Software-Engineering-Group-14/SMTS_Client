@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.stream.Stream;
 
@@ -12,7 +11,6 @@ public class Connect {
     int port;
     Socket client;
     PrintWriter out;
-    BufferedReader socketInput;
     BufferedReader userInput;
 
     public Connect(String serverUrl, int port){
@@ -24,7 +22,6 @@ public class Connect {
         try {
             this.client = new Socket(this.serverUrl, this.port);
             this.out = new PrintWriter(this.client.getOutputStream(), true);
-            this.socketInput = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
             this.userInput = new BufferedReader(new InputStreamReader(System.in));
             return true;
         } catch (IOException err) {
@@ -40,7 +37,14 @@ public class Connect {
     }
 
     public Stream<String> recieveMessage(){
-        return this.socketInput.lines(); //Return the server response as a Stream
+        try {
+            BufferedReader socketInput = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
+            return socketInput.lines(); //Return the server response as a Stream
+
+        } catch (IOException err){
+            System.out.println(err.getLocalizedMessage());
+        }
+        return null;
     }
 
 }
