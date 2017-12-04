@@ -1,5 +1,3 @@
-package com.group14.SMTS;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
