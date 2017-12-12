@@ -12,6 +12,8 @@ java main
 ```
 4. To run the project with GUI (currently incomplete):
 ```
+git checkout interface
+git pull
 javac MainI.java
 java MainI
 ```
